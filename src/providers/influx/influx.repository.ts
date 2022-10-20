@@ -70,7 +70,7 @@ export class InfluxRepository {
     async rows<RowType>(
         query: string | ParameterizedQuery,
         customApiConfig?: ApiConfig,
-    ): Promise<(RowType | any)[]> {
+    ): Promise<RowType[]> {
         const { org } = this.getApiConfig(customApiConfig);
         const api = this.getQueryApi(org);
 

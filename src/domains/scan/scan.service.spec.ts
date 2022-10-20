@@ -20,7 +20,7 @@ describe('ScanService', () => {
         expect(service).toBeDefined();
     });
 
-    describe('save', () => {
+    describe('write', () => {
         it('device data', async () => {
             await service.save({
                 measurement: 'measurement1',
@@ -30,12 +30,23 @@ describe('ScanService', () => {
         });
     });
 
-    describe('find', () => {
-        it('by serial', async () => {
+    describe('query', () => {
+        it('find by serial', async () => {
             const _serial = '00000001';
-            const result = await service.findBySerial(_serial);
+            const result = await service.queryBySerial(_serial);
+
             expect(result.serial).toEqual(_serial);
             expect(result.measurements).toBeDefined();
+        });
+
+        it('stats by serial', async () => {
+            const _serial = '00000001';
+            const result = await service.statsBySerial(_serial);
+
+            expect(result.serial).toEqual(_serial);
+            expect(result.count).toBeGreaterThan(0);
+            expect(result.mkt).toBeDefined();
+            expect(result.avg).toBeDefined();
         });
     });
 });

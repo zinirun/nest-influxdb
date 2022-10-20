@@ -2,6 +2,8 @@
 ormconfig.json
 ormconfig.*.json
 schema.gql
+/flux
+*.flux
 
 # compiled output
 /dist
